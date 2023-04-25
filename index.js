@@ -10,9 +10,8 @@ const inputBtn = document.getElementById("input-btn")
 
 inputBtn.addEventListener("click", function() {
      // Push the value from the inputEl into the myLeads array 
-     let inputValue = document.getElementById("input-el").value;
-    // instead of the hard-coded "www.awesomeleads.com" value
+        // instead of the hard-coded "www.awesomeleads.com" value
     // Google -> "get value from input field javascript"
-    myLeads.push(inputValue)
+    myLeads.push(inputEl.value)
     console.log(myLeads)
 })
