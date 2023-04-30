@@ -1,14 +1,19 @@
-let myLeads = ["www.awesomelead.com", "www.epiclead.com", "www.greatlead.com"];
+let myLeads = [];
 const inputEl = document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn");
-// 2. Grab the unordered list and store it in a const variable called ulEl
 const ulEl = document.getElementById("ul-el");
 
 inputBtn.addEventListener("click", function () {
   myLeads.push(inputEl.value);
+  // 2. Call the renderLeads() function
+  renderLeads();
 });
 
-for (let i = 0; i < myLeads.length; i++) {
-  console.log(myLeads[i]);
-  ulEl.innerHTML +=  "<li>" + myLeads[i] + "</li>"
+// 1. Wrap the code below in a renderLeads() function
+function renderLeads() {
+  let listItems = "";
+  for (let i = 0; i < myLeads.length; i++) {
+    listItems += "<li>" + myLeads[i] + "</li>";
+  }
+  ulEl.innerHTML = listItems;
 }
