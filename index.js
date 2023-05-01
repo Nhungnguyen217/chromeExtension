@@ -12,18 +12,15 @@ if (leadsFromLocalStorage) {
   render(myLeads);
 }
 
-
-// 2. Listen for clicks on tabBtn. Log Per's LinkedIn URL to the console
 tabBtn.addEventListener("click", function () {
-  console.log(tabs[0].url);
-});
-
-
-inputBtn.addEventListener("click", function () {
-  myLeads.push(inputEl.value);
-  inputEl.value = "";
-  localStorage.setItem("myLeads", JSON.stringify(myLeads));
-  render(myLeads);
+  // from https://stackoverflow.com/questions/6132018/how-can-i-get-the-current-tab-url-for-chrome-extension
+  // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  //    });
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    myLeads.push(tabs[0].url);
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    render(myLeads);
+  });
 });
 
 function render(leads) {
@@ -42,5 +39,12 @@ function render(leads) {
 deleteBtn.addEventListener("dblclick", function () {
   localStorage.clear();
   myLeads = []; //while(myLeads.length>0)  myLeads.pop()
+  render(myLeads);
+});
+
+inputBtn.addEventListener("click", function () {
+  myLeads.push(inputEl.value);
+  inputEl.value = "";
+  localStorage.setItem("myLeads", JSON.stringify(myLeads));
   render(myLeads);
 });
