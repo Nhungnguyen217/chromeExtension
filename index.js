@@ -1,21 +1,30 @@
 let myLeads = [];
 const inputEl = document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn");
-const deleteBtn = document.getElementById("delete-btn")
+const deleteBtn = document.getElementById("delete-btn");
+const tabBtn = document.getElementById("tab-btn");
 const ulEl = document.getElementById("ul-el");
-let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
+const tabs = [{ url: "https://www.linkedin.com/in/per-harald-borgen/" }];
 
-if(leadsFromLocalStorage){
-  myLeads = leadsFromLocalStorage
-  render(myLeads)
+if (leadsFromLocalStorage) {
+  myLeads = leadsFromLocalStorage;
+  render(myLeads);
 }
 
+
+// 2. Listen for clicks on tabBtn. Log Per's LinkedIn URL to the console
+tabBtn.addEventListener("click", function () {
+  console.log(tabs[0].url);
+});
+
+
 inputBtn.addEventListener("click", function () {
-  myLeads.push(inputEl.value)
-  inputEl.value = ""
-  localStorage.setItem("myLeads", JSON.stringify(myLeads) )
-  render(myLeads)
-})
+  myLeads.push(inputEl.value);
+  inputEl.value = "";
+  localStorage.setItem("myLeads", JSON.stringify(myLeads));
+  render(myLeads);
+});
 
 function render(leads) {
   let listItems = "";
@@ -30,8 +39,8 @@ function render(leads) {
   ulEl.innerHTML = listItems;
 }
 
-deleteBtn.addEventListener("dblclick", function(){
-  localStorage.clear()
-  myLeads= [] //while(myLeads.length>0)  myLeads.pop()
-  render(myLeads)
-})
+deleteBtn.addEventListener("dblclick", function () {
+  localStorage.clear();
+  myLeads = []; //while(myLeads.length>0)  myLeads.pop()
+  render(myLeads);
+});
