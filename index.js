@@ -5,7 +5,6 @@ const deleteBtn = document.getElementById("delete-btn");
 const tabBtn = document.getElementById("tab-btn");
 const ulEl = document.getElementById("ul-el");
 let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
-const tabs = [{ url: "https://www.linkedin.com/in/per-harald-borgen/" }];
 
 if (leadsFromLocalStorage) {
   myLeads = leadsFromLocalStorage;
