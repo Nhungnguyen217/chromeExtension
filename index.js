@@ -1,24 +1,20 @@
 //edge://extensions/
 
-let myLeads = `["www.google.com"]`;
+let myLeads = [];
 const inputEl = document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn");
 const ulEl = document.getElementById("ul-el");
 
-// 1. Turn the myLeads string into an array
-myLeads = JSON.parse(myLeads)
-console.log(typeof myLeads)
-// 2. Push a new value to the array
-myLeads.push("value2")
-// 3. Turn the array into a string again
-myLeads = JSON.stringify(myLeads)
-// 4. Console.log the string using typeof to verify that it's a string
-console.log(typeof myLeads)
-
 inputBtn.addEventListener("click", function () {
   myLeads.push(inputEl.value);
   inputEl.value = "";
+  // Save the myLeads array to localStorage
+  localStorage.setItem("myLeads", JSON.stringify(myLeads) )
+  // PS: remember JSON.stringify()
   renderLeads();
+
+  // To verify that it works:
+  console.log(localStorage.getItem("myLeads"))
 });
 
 function renderLeads() {
@@ -31,9 +27,7 @@ function renderLeads() {
       ${myLeads[i]}
       </a>
      </li>    `;
-     localStorage.setItem("myLeads",JSON.stringify(myLeads[i]))
+    localStorage.setItem("myLeads", JSON.stringify(myLeads[i]));
   }
   ulEl.innerHTML = listItems;
 }
-
-
