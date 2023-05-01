@@ -5,15 +5,15 @@ const inputEl = document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn");
 const ulEl = document.getElementById("ul-el");
 
+var leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+console.log(leadsFromLocalStorage)
+
 inputBtn.addEventListener("click", function () {
   myLeads.push(inputEl.value);
   inputEl.value = "";
-  // Save the myLeads array to localStorage
   localStorage.setItem("myLeads", JSON.stringify(myLeads) )
-  // PS: remember JSON.stringify()
   renderLeads();
 
-  // To verify that it works:
   console.log(localStorage.getItem("myLeads"))
 });
 
